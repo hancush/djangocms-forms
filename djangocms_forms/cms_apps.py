@@ -8,8 +8,10 @@ from cms.app_base import CMSApp
 from cms.apphook_pool import apphook_pool
 
 
+@apphook_pool.register
 class DjangoCMSFormsApphook(CMSApp):
     name = _('Forms')
-    urls = ['djangocms_forms.urls']
+    app_name = 'djangocms_forms'
 
-apphook_pool.register(DjangoCMSFormsApphook)
+    def get_urls(self, page=None, language=None, **kwargs):
+        return ['djangocms_forms.urls']
